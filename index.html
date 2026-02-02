@@ -3,36 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaSanWorld - Nhanh, An toàn, Hiệu quả</title>
-
+    <title>LaSanWorld - Giao diện thông minh</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap&subset=vietnamese,latin" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* Ép toàn bộ web dùng font Inter */
-        body { font-family: 'Inter', sans-serif; }
-    </style>
 </head>
-<body class="bg-white text-slate-900">
+<body class="bg-white">
 
-    <header class="p-6 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white z-50">
-        <div class="text-2xl font-extrabold tracking-tighter text-blue-600">LaSanWorld</div>
-        <div id="search-bar" class="hidden md:block">
-            <input type="text" placeholder="Tìm kiếm giải pháp..." class="bg-slate-100 px-4 py-2 rounded-full text-sm outline-none focus:ring-2 focus:ring-blue-500">
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="ls-container h-16 flex items-center justify-between">
+            <div class="text-xl font-bold tracking-tighter text-blue-600">LaSanWorld</div>
+            
+            <button class="p-2 md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#" class="hover:text-blue-600 transition">Sản phẩm</a>
+                <a href="#" class="hover:text-blue-600 transition">Trò chơi</a>
+                <a href="#" class="hover:text-blue-600 transition">Dự án</a>
+            </nav>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto py-20 px-4">
-        <div class="max-w-3xl">
-            <h1 class="text-5xl font-extrabold leading-tight mb-6">Xây dựng tương lai số <span class="text-blue-600 italic">Bền vững</span></h1>
-            <p class="text-xl text-slate-500">Ứng dụng công nghệ HTML5, Tailwind và Vanilla JS để mang lại trải nghiệm nhanh nhất cho người dùng toàn cầu.</p>
+    <main class="ls-container py-12 md:py-24">
+        <div class="max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
+                Giải pháp số <span class="text-blue-600 italic underline decoration-2">Tối giản</span> cho mọi thiết bị.
+            </h1>
+            <p class="text-lg md:text-xl text-slate-500 mb-10 leading-relaxed">
+                Trải nghiệm mượt mà từ điện thoại đến máy tính. LaSanWorld cam kết mang lại giao diện sạch, tốc độ nhanh và không quảng cáo gây rối.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#" class="btn-primary px-8 py-4 rounded-xl font-bold text-center">Khám phá ngay</a>
+                <a href="#" class="px-8 py-4 rounded-xl font-bold border border-slate-200 text-center hover:bg-slate-50 transition">Tìm hiểu thêm</a>
+            </div>
         </div>
     </main>
 
-    </body>
+</body>
 </html>
