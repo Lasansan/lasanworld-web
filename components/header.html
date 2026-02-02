@@ -1,0 +1,23 @@
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="ls-container h-16 flex items-center justify-between px-4 mx-auto max-w-6xl">
+        <div class="text-xl font-extrabold text-blue-600">LaSanWorld</div>
+        
+        <div class="relative group">
+            <button class="flex items-center space-x-2 bg-slate-50 px-3 py-2 rounded-lg text-sm font-medium border border-slate-200">
+                <span id="current-flag">🇺🇸</span>
+                <span class="hidden sm:inline">Language</span>
+            </button>
+            
+            <div class="absolute right-0 mt-2 w-48 bg-white border border-slate-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                <div class="p-2 grid grid-cols-1">
+                    <button onclick="setLanguage('en')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg w-full text-left"><span>🇺🇸</span><span>English</span></button>
+                    <button onclick="setLanguage('vi')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg w-full text-left"><span>🇻🇳</span><span>Tiếng Việt</span></button>
+                    <button onclick="setLanguage('zh')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg w-full text-left"><span>🇨🇳</span><span>中文</span></button>
+                    <button onclick="setLanguage('es')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg w-full text-left"><span>🇪🇸</span><span>Español</span></button>
+                    <button onclick="setLanguage('fr')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg w-full text-left"><span>🇫🇷</span><span>Français</span></button>
+                    <button onclick="setLanguage('ja')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg w-full text-left"><span>🇯🇵</span><span>日本語</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
