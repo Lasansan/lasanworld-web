@@ -1,5 +1,8 @@
-// Hàm tự động xác định đường dẫn (Thêm ../ nếu đang ở trong thư mục con)
-const getPath = (url) => window.location.pathname.includes('/pages/') ? ../${url} : url;
+// Hàm tự động xác định đường dẫn dựa trên vị trí file hiện tại
+const getPath = (url) => {
+    const isSubPage = window.location.pathname.includes('/pages/');
+    return isSubPage ? ../${url} : url;
+};
 
 async function initSite() {
     try {
@@ -32,8 +35,7 @@ async function initSite() {
             });
             pContainer.innerHTML = html;
         }
-    } catch (e) { console.error("Lỗi nạp dữ liệu:", e); }
+    } catch (e) { console.error("Lỗi nạp dữ liệu La San:", e); }
 }
 
 window.addEventListener('DOMContentLoaded', initSite);
-Viết cho Thái Thiên
