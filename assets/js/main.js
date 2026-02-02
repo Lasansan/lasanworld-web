@@ -1,7 +1,9 @@
+// Hàm này giúp máy tính tự tìm đường dẫn đúng dù bạn ở trang chủ hay trang con
 const getPath = (url) => window.location.pathname.includes('/pages/') ? ../${url} : url;
 
 async function initSite() {
     try {
+        // Nạp Header và Footer
         const [hRes, fRes] = await Promise.all([
             fetch(getPath('components/header.html')),
             fetch(getPath('components/footer.html'))
@@ -9,6 +11,7 @@ async function initSite() {
         document.getElementById('header-component').innerHTML = await hRes.text();
         document.getElementById('footer-component').innerHTML = await fRes.text();
 
+        // Nạp dữ liệu sản phẩm
         const pContainer = document.getElementById('product-display');
         if (pContainer) {
             const pRes = await fetch(getPath('data/products.json'));
@@ -30,6 +33,6 @@ async function initSite() {
             });
             pContainer.innerHTML = html;
         }
-    } catch (e) { console.error("Lỗi:", e); }
+    } catch (e) { console.error("Lỗi nạp dữ liệu:", e); }
 }
 window.addEventListener('DOMContentLoaded', initSite);
