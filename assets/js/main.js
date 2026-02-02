@@ -1,19 +1,14 @@
-// Hàm tự động xác định đường dẫn dựa trên vị trí file hiện tại
-const getPath = (url) => {
-    const isSubPage = window.location.pathname.includes('/pages/');
-    return isSubPage ? ../${url} : url;
-};
+const getPath = (url) => window.location.pathname.includes('/pages/') ? ../${url} : url;
 
 async function initSite() {
     try {
-        // 1. Nạp Header và Footer
-        const hRes = await fetch(getPath('components/header.html'));
+        const [hRes, fRes] = await Promise.all([
+            fetch(getPath('components/header.html')),
+            fetch(getPath('components/footer.html'))
+        ]);
         document.getElementById('header-component').innerHTML = await hRes.text();
-        
-        const fRes = await fetch(getPath('components/footer.html'));
         document.getElementById('footer-component').innerHTML = await fRes.text();
 
-        // 2. Nạp Sản phẩm (Chỉ chạy khi có id product-display)
         const pContainer = document.getElementById('product-display');
         if (pContainer) {
             const pRes = await fetch(getPath('data/products.json'));
@@ -24,7 +19,7 @@ async function initSite() {
                 m.categories.forEach(c => {
                     html += <h3 class="text-lg font-semibold text-slate-700 mb-3 ml-2">📂 ${c.catName}</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">;
                     c.items.forEach(i => {
-                        html += `<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                        html += `<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition">
                             <h4 class="font-bold text-slate-900">${i.title}</h4>
                             <p class="text-sm text-slate-500 mt-2 italic">"${i.recommendation}"</p>
                             <a href="${i.link}" target="_blank" class="inline-block mt-3 text-xs font-bold text-blue-600">Khám phá ngay →</a>
@@ -35,7 +30,6 @@ async function initSite() {
             });
             pContainer.innerHTML = html;
         }
-    } catch (e) { console.error("Lỗi nạp dữ liệu La San:", e); }
+    } catch (e) { console.error("Lỗi:", e); }
 }
-
 window.addEventListener('DOMContentLoaded', initSite);
