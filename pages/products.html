@@ -7,12 +7,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 text-slate-900">
-    <div id="header-component"></div> <main class="max-w-6xl mx-auto px-4 py-12">
-        <h1 class="text-3xl font-black text-slate-800 mb-2">Our Recommendations</h1>
-        <p class="text-slate-500 mb-8">Những sản phẩm và dịch vụ tốt nhất mà chúng mình tin dùng.</p>
-        
-        <div id="product-display"></div> </main>
 
-    <div id="footer-component"></div> <script src="/..assets/js/main.js"></script>
+    <div id="header-component"></div>
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <div class="mb-10 border-b pb-6">
+            <h1 class="text-4xl font-black text-slate-800">Our Recommendations</h1>
+            <p class="text-slate-500 mt-2 text-lg">Những sản phẩm chất lượng mà La San tin dùng và chia sẻ cùng cộng đồng.</p>
+        </div>
+        
+        <div id="product-display" class="min-h-[300px]">
+            <p class="text-center text-slate-400 animate-pulse">Đang tải danh sách sản phẩm...</p>
+        </div>
+    </main>
+
+    <div id="footer-component"></div>
+
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>
