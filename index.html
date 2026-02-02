@@ -1,46 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaSanWorld - Global Hub</title>
+    <title>LaSanWorld - Nền tảng số đa năng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-white">
+<body class="bg-slate-50 font-['Inter']">
 
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="ls-container h-16 flex items-center justify-between">
-            <div class="text-xl font-extrabold text-blue-600">LaSanWorld</div>
+    <div id="header-component"></div>
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <section class="text-center mb-20">
+            <h1 class="text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
+                Khám phá hệ sinh thái <span class="text-blue-600">LaSanWorld</span>
+            </h1>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                Giải pháp công nghệ tối ưu cho Sản phẩm, Trò chơi và các Dự án sáng tạo.
+            </p>
+        </section>
+
+        <div id="product-display" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-all">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 font-bold">01</div>
+                <h3 class="text-xl font-bold mb-2">Sản phẩm số</h3>
+                <p class="text-slate-500 text-sm">Các ứng dụng và công cụ hỗ trợ công việc hiệu quả.</p>
+            </div>
             
-            <div class="relative group">
-                <button class="flex items-center space-x-2 bg-slate-50 px-3 py-2 rounded-lg text-sm font-medium border border-slate-200">
-                    <span id="current-flag">🇺🇸</span>
-                    <span class="hidden sm:inline">Language</span>
-                </button>
-                
-                <div class="absolute right-0 mt-2 w-48 bg-white border border-slate-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                    <div class="p-2 grid grid-cols-1">
-                        <button onclick="setLanguage('en')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇺🇸</span><span>English</span></button>
-                        <button onclick="setLanguage('vi')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇻🇳</span><span>Tiếng Việt</span></button>
-                        <button onclick="setLanguage('zh')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇨🇳</span><span>中文</span></button>
-                        <button onclick="setLanguage('es')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇪🇸</span><span>Español</span></button>
-                        <button onclick="setLanguage('fr')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇫🇷</span><span>Français</span></button>
-                        <button onclick="setLanguage('ja')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇯🇵</span><span>日本語</span></button>
-                    </div>
-                </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-all">
+                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 font-bold">02</div>
+                <h3 class="text-xl font-bold mb-2">Trò chơi giải trí</h3>
+                <p class="text-slate-500 text-sm">Kho trò chơi đa dạng, mượt mà trên mọi thiết bị.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-all">
+                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 font-bold">03</div>
+                <h3 class="text-xl font-bold mb-2">Dự án cộng đồng</h3>
+                <p class="text-slate-500 text-sm">Kết nối và chia sẻ các giá trị bền vững cho tương lai.</p>
             </div>
         </div>
-    </header>
-
-    <main class="ls-container py-20">
-        <h1 class="text-4xl font-bold">International Digital Hub</h1>
-        <p class="text-slate-500 mt-4">Hệ thống đa ngôn ngữ đã sẵn sàng phục vụ người dùng toàn cầu.</p>
     </main>
 
-    <script src="js/main.js"></script>
+    <div id="footer-component"></div>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
