@@ -1,11 +1,45 @@
 [
   {
-    "id": "sp001",
-    "name": "Minimalist Desk Lamp",
-    "country": "United States",
-    "category": "Home Decor",
-    "affiliateLink": "#",
-    "tags": ["lighting", "office"],
-    "status": "active"
+    "market": "Vietnam",
+    "categories": [
+      {
+        "catName": "Home & Living",
+        "items": [
+          {
+            "id": "vn-hl-01",
+            "title": "Máy lọc không khí thông minh",
+            "recommendation": "Sau khi trải nghiệm 3 tháng, mình thấy máy này cực kỳ êm, phù hợp cho nhà có trẻ nhỏ.",
+            "link": "https://shope.ee/vi-du-link-cua-la-san"
+          }
+        ]
+      },
+      {
+        "catName": "Kitchen",
+        "items": [
+          {
+            "id": "vn-k-01",
+            "title": "Bộ nồi chống dính cao cấp",
+            "recommendation": "Lớp chống dính rất bền, giúp việc nấu nướng và dọn dẹp trở nên nhẹ nhàng hơn nhiều.",
+            "link": "https://tiki.vn/vi-du-link"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "market": "United States",
+    "categories": [
+      {
+        "catName": "Courses & Learning",
+        "items": [
+          {
+            "id": "us-cl-01",
+            "title": "Data Science Masterclass",
+            "recommendation": "A comprehensive course that I highly recommend for career shifters in the US market.",
+            "link": "https://udemy.com/example-link"
+          }
+        ]
+      }
+    ]
   }
 ]
