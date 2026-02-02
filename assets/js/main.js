@@ -1,11 +1,11 @@
 // 1. Hàm nạp Header và Footer
 async function loadComponents() {
     try {
-        const headerRes = await fetch('/components/header.html');
+        const headerRes = await fetch('../components/header.html');
         const headerHtml = await headerRes.text();
         document.getElementById('header-component').innerHTML = headerHtml;
 
-        const footerRes = await fetch('/components/footer.html');
+        const footerRes = await fetch('../components/footer.html');
         const footerHtml = await footerRes.text();
         document.getElementById('footer-component').innerHTML = footerHtml;
         console.log("Đã nạp xong Header và Footer!");
@@ -20,7 +20,7 @@ async function renderProducts() {
     if (!container) return;
 
     try {
-        const response = await fetch('/data/products.json');
+        const response = await fetch('../data/products.json');
         const data = await response.json();
         
         let html = '';
