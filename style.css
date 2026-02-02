@@ -1,0 +1,28 @@
+/* Thiết lập màu sắc và phông chữ cho LaSanWorld */
+:root {
+    --primary-blue: #2563eb;
+    --bg-white: #ffffff;
+    --text-dark: #0f172a;
+    --gray-soft: #f1f5f9;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-white);
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Hiệu ứng mượt mà khi di chuột vào sản phẩm */
+.card-style {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--gray-soft);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: white;
+}
+
+.card-style:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
