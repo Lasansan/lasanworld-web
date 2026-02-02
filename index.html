@@ -1,51 +1,46 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaSanWorld - Giao diện thông minh</title>
-    
+    <title>LaSanWorld - Global Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-white">
 
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div class="ls-container h-16 flex items-center justify-between">
-            <div class="text-xl font-bold tracking-tighter text-blue-600">LaSanWorld</div>
+            <div class="text-xl font-extrabold text-blue-600">LaSanWorld</div>
             
-            <button class="p-2 md:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-            
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
-                <a href="#" class="hover:text-blue-600 transition">Sản phẩm</a>
-                <a href="#" class="hover:text-blue-600 transition">Trò chơi</a>
-                <a href="#" class="hover:text-blue-600 transition">Dự án</a>
-            </nav>
+            <div class="relative group">
+                <button class="flex items-center space-x-2 bg-slate-50 px-3 py-2 rounded-lg text-sm font-medium border border-slate-200">
+                    <span id="current-flag">🇺🇸</span>
+                    <span class="hidden sm:inline">Language</span>
+                </button>
+                
+                <div class="absolute right-0 mt-2 w-48 bg-white border border-slate-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    <div class="p-2 grid grid-cols-1">
+                        <button onclick="setLanguage('en')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇺🇸</span><span>English</span></button>
+                        <button onclick="setLanguage('vi')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇻🇳</span><span>Tiếng Việt</span></button>
+                        <button onclick="setLanguage('zh')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇨🇳</span><span>中文</span></button>
+                        <button onclick="setLanguage('es')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇪🇸</span><span>Español</span></button>
+                        <button onclick="setLanguage('fr')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇫🇷</span><span>Français</span></button>
+                        <button onclick="setLanguage('ja')" class="flex items-center space-x-3 p-2 hover:bg-slate-50 rounded-lg"><span>🇯🇵</span><span>日本語</span></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="ls-container py-12 md:py-24">
-        <div class="max-w-4xl">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-                Giải pháp số <span class="text-blue-600 italic underline decoration-2">Tối giản</span> cho mọi thiết bị.
-            </h1>
-            <p class="text-lg md:text-xl text-slate-500 mb-10 leading-relaxed">
-                Trải nghiệm mượt mà từ điện thoại đến máy tính. LaSanWorld cam kết mang lại giao diện sạch, tốc độ nhanh và không quảng cáo gây rối.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="#" class="btn-primary px-8 py-4 rounded-xl font-bold text-center">Khám phá ngay</a>
-                <a href="#" class="px-8 py-4 rounded-xl font-bold border border-slate-200 text-center hover:bg-slate-50 transition">Tìm hiểu thêm</a>
-            </div>
-        </div>
+    <main class="ls-container py-20">
+        <h1 class="text-4xl font-bold">International Digital Hub</h1>
+        <p class="text-slate-500 mt-4">Hệ thống đa ngôn ngữ đã sẵn sàng phục vụ người dùng toàn cầu.</p>
     </main>
 
+    <script src="js/main.js"></script>
 </body>
 </html>
