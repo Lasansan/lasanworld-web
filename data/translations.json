@@ -1,50 +1,58 @@
 {
   "en": {
     "label": "English",
-    "flag": "🇺🇸",
+    "flag": "\uD83C\uDDFA\uD83C\uDDF8",
     "slogan": "Fast | Secure | Effective | Sustainable",
     "explore": "Explore Products",
-    "experience": "Game Experience",
-    "loading": "Connecting to La San Library..."
+    "experience": "Game Experience"
   },
   "vi": {
     "label": "Tiếng Việt",
-    "flag": "🇻🇳",
+    "flag": "\uD83C\uDDFB\uD83C\uDDF3",
     "slogan": "Nhanh chóng | Bảo mật | Hiệu quả | Bền vững",
     "explore": "Khám phá Sản phẩm",
-    "experience": "Trải nghiệm Game",
-    "loading": "Đang kết nối với thư viện La San..."
-  },
-  "zh": {
-    "label": "中文",
-    "flag": "🇨🇳",
-    "slogan": "快速 | 安全 | 有效 | 可持续",
-    "explore": "探索产品",
-    "experience": "游戏体验",
-    "loading": "正在连接到 La San 图书馆..."
-  },
-  "es": {
-    "label": "Español",
-    "flag": "🇪🇸",
-    "slogan": "Rápido | Seguro | Efectivo | Sostenible",
-    "explore": "Explorar Productos",
-    "experience": "Experiencia de Juego",
-    "loading": "Conectando con la Biblioteca La San..."
-  },
-  "fr": {
-    "label": "Français",
-    "flag": "🇫🇷",
-    "slogan": "Rapide | Sécurisé | Efficace | Durable",
-    "explore": "Explorer les Produits",
-    "experience": "Expérience de Jeu",
-    "loading": "Connexion à la bibliothèque La San..."
+    "experience": "Trải nghiệm Game"
   },
   "ja": {
     "label": "日本語",
-    "flag": "🇯🇵",
+    "flag": "\uD83C\uDDEF\uD83C\uDDF5",
     "slogan": "高速 | 安全 | 効果的 | 持続可能",
     "explore": "製品を探索する",
-    "experience": "ゲーム体験",
-    "loading": "ラサン図書館に接続中..."
+    "experience": "ゲーム体験"
+  },
+  "zh": {
+    "label": "中文",
+    "flag": "\uD83C\uDDE8\uD83C\uDDF3",
+    "slogan": "快速 | 安全 | 有效 | 可持续",
+    "explore": "探索产品",
+    "experience": "游戏体验"
+  },
+  "fr": {
+    "label": "Français",
+    "flag": "\uD83C\uDDEB\uD83C\uDDF7",
+    "slogan": "Rapide | Sécurisé | Efficace | Durable",
+    "explore": "Explorer les Produits",
+    "experience": "Expérience de Jeu"
+  },
+  "de": {
+    "label": "Deutsch",
+    "flag": "\uD83C\uDDE9\uD83C\uDDEA",
+    "slogan": "Schnell | Sicher | Effektiv | Nachhaltig",
+    "explore": "Produkte entdecken",
+    "experience": "Spielerlebnis"
+  },
+  "ko": {
+    "label": "한국어",
+    "flag": "\uD83C\uDDF0\uD83C\uDDF7",
+    "slogan": "빠름 | 안전 | 효과적 | 지속 가능",
+    "explore": "제품 탐색",
+    "experience": "게임 경험"
+  },
+  "es": {
+    "label": "Español",
+    "flag": "\uD83C\uDDEA\uD83C\uDDF8",
+    "slogan": "Rápido | Seguro | Efectivo | Sostenible",
+    "explore": "Explorar Productos",
+    "experience": "Experiencia de Juego"
   }
 }
