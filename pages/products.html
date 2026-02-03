@@ -5,13 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản phẩm & Mẹo vặt - LaSanWorld</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                },
+                colors: {
+                    'primary-blue': '#1264AB',
+                    'logo-blue': '#2563eb',
+                }
+            }
+        }
+    }
+</script>
+
 </head>
 <body class="bg-slate-50">
     <div id="header-component"></div>
 
     <main class="max-w-7xl mx-auto px-6 py-16">
         <header class="mb-16 text-center md:text-left">
-            <h1 class="text-4xl md:text-5xl font-black text-blue-600 mb-6 antialiased">LaSanWorld</h1>
+            <h1 class="text-3xl md:text-5xl font-black text-logo-blue mb-4 antialiased">LaSanWorld</h1>
             <p class="text-slate-500 max-w-2xl text-lg antialiased">Góc nhỏ chia sẻ thông tin hữu ích và những gợi ý thú vị để cùng tham khảo.</p>
         </header>
 
