@@ -1,58 +1,47 @@
 {
   "en": {
     "label": "English",
-    "flag": "\uD83C\uDDFA\uD83C\uDDF8",
-    "slogan": "Fast | Secure | Effective | Sustainable",
-    "explore": "Explore Products",
-    "experience": "Game Experience"
+    "flag": "🇺🇸",
+    "slogan": "Fast | Secure | Effective | Sustainable"
+  },
+  "en-AU": {
+    "label": "Australia",
+    "flag": "🇦🇺",
+    "slogan": "Fast | Secure | Effective | Sustainable"
   },
   "vi": {
     "label": "Tiếng Việt",
-    "flag": "\uD83C\uDDFB\uD83C\uDDF3",
-    "slogan": "Nhanh chóng | Bảo mật | Hiệu quả | Bền vững",
-    "explore": "Khám phá Sản phẩm",
-    "experience": "Trải nghiệm Game"
+    "flag": "🇻🇳",
+    "slogan": "Nhanh chóng | Bảo mật | Hiệu quả | Bền vững"
   },
   "ja": {
     "label": "日本語",
-    "flag": "\uD83C\uDDEF\uD83C\uDDF5",
-    "slogan": "高速 | 安全 | 効果的 | 持続可能",
-    "explore": "製品を探索する",
-    "experience": "ゲーム体験"
+    "flag": "🇯🇵",
+    "slogan": "高速 | 安全 | 効果"
   },
   "zh": {
     "label": "中文",
-    "flag": "\uD83C\uDDE8\uD83C\uDDF3",
-    "slogan": "快速 | 安全 | 有效 | 可持续",
-    "explore": "探索产品",
-    "experience": "游戏体验"
+    "flag": "🇨🇳",
+    "slogan": "快速 | 安全 | 有效"
   },
   "fr": {
     "label": "Français",
-    "flag": "\uD83C\uDDEB\uD83C\uDDF7",
-    "slogan": "Rapide | Sécurisé | Efficace | Durable",
-    "explore": "Explorer les Produits",
-    "experience": "Expérience de Jeu"
+    "flag": "🇫🇷",
+    "slogan": "Rapide | Sécurisé | Efficace"
   },
   "de": {
     "label": "Deutsch",
-    "flag": "\uD83C\uDDE9\uD83C\uDDEA",
-    "slogan": "Schnell | Sicher | Effektiv | Nachhaltig",
-    "explore": "Produkte entdecken",
-    "experience": "Spielerlebnis"
+    "flag": "🇩🇪",
+    "slogan": "Schnell | Sicher | Effektiv"
   },
   "ko": {
     "label": "한국어",
-    "flag": "\uD83C\uDDF0\uD83C\uDDF7",
-    "slogan": "빠름 | 안전 | 効果的 | 지속 가능",
-    "explore": "제품 탐색",
-    "experience": "게임 경험"
+    "flag": "🇰🇷",
+    "slogan": "빠름 | 안전 | 효과적"
   },
   "es": {
     "label": "Español",
-    "flag": "\uD83C\uDDEA\uD83C\uDDF8",
-    "slogan": "Rápido | Seguro | Efectivo | Sostenible",
-    "explore": "Explorar Productos",
-    "experience": "Expérience de Jeu"
+    "flag": "🇪🇸",
+    "slogan": "Rápido | Seguro | Efectivo"
   }
 }
