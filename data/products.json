@@ -1,1 +1,35 @@
-
+[
+  {
+    "market": "Mẹo vặt & Tiện ích",
+    "categories": [
+      {
+        "catName": "Sống khỏe mỗi ngày",
+        "items": [
+          {
+            "id": "tip-01",
+            "title": "Uống nước đúng cách",
+            "recommendation": "Một ly nước ấm ngay khi thức dậy giúp khởi động hệ tiêu hóa tuyệt vời.",
+            "link": "#"
+          },
+          {
+            "id": "prod-01",
+            "title": "Bình nước nhắc nhở",
+            "recommendation": "Sản phẩm giúp bạn duy trì thói quen uống đủ 2 lít nước mỗi ngày để da đẹp, dáng thon.",
+            "link": "https://lasanworld.com"
+          }
+        ]
+      },
+      {
+        "catName": "Mẹo Công nghệ",
+        "items": [
+          {
+            "id": "tip-02",
+            "title": "Phím tắt thần thánh",
+            "recommendation": "Dùng Ctrl + Shift + T để mở lại tab trình duyệt bạn lỡ tay đóng mất nhé!",
+            "link": "#"
+          }
+        ]
+      }
+    ]
+  }
+]
