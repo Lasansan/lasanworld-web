@@ -1,6 +1,6 @@
 async function init() {
     try {
-        // 1. Nạp Header & Footer
+        // 1. Nạp Header & Footer (Dùng ../ vì đang ở trong thư mục pages)
         const [h, f] = await Promise.all([
             fetch('../components/header.html').then(r => r.text()),
             fetch('../components/footer.html').then(r => r.text())
@@ -8,7 +8,8 @@ async function init() {
         document.getElementById('header-component').innerHTML = h;
         document.getElementById('footer-component').innerHTML = f;
 
-        // 2. Nạp Sản phẩm (Dùng ../ để lùi ra ngoài thư mục pages)
+        // 2. Nạp Sản phẩm - ĐÂY LÀ CHỖ QUYẾT ĐỊNH
+        // Phải có ../ ở đầu để thoát khỏi thư mục pages rồi mới vào được data
         const res = await fetch('../data/products.json');
         const data = await res.json();
         const container = document.getElementById('product-display');
@@ -16,7 +17,7 @@ async function init() {
         if (container && data) {
             let html = '';
             data.forEach(m => {
-                html += <h2 class="text-2xl font-bold mt-10 mb-4 text-blue-700 underline">${m.market}</h2>;
+                html += <h2 class="text-2xl font-bold mt-10 mb-4 text-blue-700">${m.market}</h2>;
                 m.categories.forEach(c => {
                     html += <h3 class="text-lg font-semibold mb-3">📂 ${c.catName}</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">;
                     c.items.forEach(i => {
@@ -32,8 +33,7 @@ async function init() {
             container.innerHTML = html;
         }
     } catch (e) { 
-        console.error("Lỗi rồi Tiểu Ngưu ơi:", e);
-        document.getElementById('product-display').innerHTML = "Lỗi kết nối dữ liệu. Tiểu Ngưu kiểm tra lại file JSON nhé!";
+        console.error("Lỗi kết nối:", e);
     }
 }
 window.addEventListener('DOMContentLoaded', init);
