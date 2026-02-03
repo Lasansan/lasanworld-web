@@ -1,0 +1,38 @@
+{
+  "en": {
+    "slogan": "Fast | Secure | Effective | Sustainable",
+    "explore": "Explore Products",
+    "experience": "Game Experience",
+    "loading": "Connecting to La San Library..."
+  },
+  "vi": {
+    "slogan": "Nhanh chóng | Bảo mật | Hiệu quả | Bền vững",
+    "explore": "Khám phá Sản phẩm",
+    "experience": "Trải nghiệm Game",
+    "loading": "Đang kết nối với thư viện La San..."
+  },
+  "zh": {
+    "slogan": "快速 | 安全 | 有效 | 可持续",
+    "explore": "探索产品",
+    "experience": "游戏体验",
+    "loading": "正在连接到 La San 图书馆..."
+  },
+  "es": {
+    "slogan": "Rápido | Seguro | Efectivo | Sostenible",
+    "explore": "Explorar Productos",
+    "experience": "Experiencia de Juego",
+    "loading": "Conectando con la Biblioteca La San..."
+  },
+  "fr": {
+    "slogan": "Rapide | Sécurisé | Efficace | Durable",
+    "explore": "Explorer les Produits",
+    "experience": "Expérience de Jeu",
+    "loading": "Connexion à la bibliothèque La San..."
+  },
+  "ja": {
+    "slogan": "高速 | 安全 | 効果的 | 持続可能",
+    "explore": "製品を探索する",
+    "experience": "ゲーム体験",
+    "loading": "ラサン図書館に接続中..."
+  }
+}
