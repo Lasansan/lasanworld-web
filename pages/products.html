@@ -4,44 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản phẩm & Mẹo vặt - LaSanWorld</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                fontFamily: {
-                    sans: ['Inter', 'sans-serif'],
-                },
-                colors: {
-                    'primary-blue': '#1264AB',
-                    'logo-blue': '#2563eb',
-                }
-            }
-        }
-    }
-</script>
-
 </head>
-<body class="bg-slate-50">
-    <div id="header-component"></div>
+<body class="bg-white text-slate-900 font-sans antialiased">
 
-    <main class="max-w-7xl mx-auto px-6 py-16">
-        <header class="mb-16 text-center md:text-left">
-            <h1 class="text-3xl md:text-5xl font-black text-logo-blue mb-4 antialiased">LaSanWorld</h1>
-            <p class="text-slate-500 max-w-2xl text-lg antialiased">Góc nhỏ chia sẻ thông tin hữu ích và những gợi ý thú vị để cùng tham khảo.</p>
-        </header>
-
-        <div id="product-display" class="space-y-16">
-            <div class="flex items-center justify-center py-20">
-                <p class="text-[#1264AB] font-bold animate-pulse text-xl">Đang kết nối với thư viện La San...</p>
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+            <a href="/" class="text-2xl font-black text-[#2563eb]">LaSanWorld</a>
+            <div class="relative" id="lang-switcher">
+                <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')" class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full hover:shadow-md transition-all">
+                    <img id="current-flag-img" src="https://flagcdn.com/w40/vn.png" width="24" class="rounded-sm shadow-sm">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2"></path></svg>
+                </button>
+                <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl py-1 z-[100] max-h-[400px] overflow-y-auto">
+                    <script>
+                        const allLangs = [
+                            {id:'vi', n:'Tiếng Việt', c:'vn'}, {id:'en', n:'English', c:'us'}, {id:'en-AU', n:'Australia', c:'au'},
+                            {id:'ja', n:'日本語', c:'jp'}, {id:'zh', n:'中文', c:'cn'}, {id:'ko', n:'한국어', c:'kr'},
+                            {id:'fr', n:'Français', c:'fr'}, {id:'de', n:'Deutsch', c:'de'}, {id:'es', n:'Español', c:'es'}
+                        ];
+                        document.write(allLangs.map(l => `
+                            <button onclick="changeLang('${l.id}','https://flagcdn.com/w40/${l.c}.png')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50 last:border-0 transition-colors">
+                                <img src="https://flagcdn.com/w40/${l.c}.png" width="22" class="rounded-sm shadow-sm">
+                                <span class="text-sm font-semibold text-slate-700">${l.n}</span>
+                            </button>
+                        `).join(''));
+                    </script>
+                </div>
             </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pt-16 pb-20">
+        <h1 class="text-4xl font-black text-blue-600 mb-4">LaSanWorld</h1>
+        <p class="text-slate-500 mb-12">Góc nhỏ chia sẻ thông tin hữu ích và những gợi ý thú vị để cùng tham khảo.</p>
+        
+        <div class="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+            <p class="text-blue-600 font-bold text-xl animate-pulse">Đang kết nối với thư viện La San...</p>
         </div>
     </main>
 
-    <div id="footer-component"></div>
-
-    <script src="../assets/js/main.js"></script>
+    <script>
+        function changeLang(lang, flagUrl) {
+            localStorage.setItem('ls_lang', lang);
+            localStorage.setItem('ls_flag', flagUrl);
+            location.reload(); 
+        }
+        window.onload = function() {
+            // Lấy lá cờ đã chọn từ trang chủ sang trang này luôn
+            const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
+            document.getElementById('current-flag-img').src = savedFlag;
+        }
+        window.onclick = function(e) {
+            if (!e.target.closest('#lang-switcher')) {
+                const m = document.getElementById('lang-dropdown');
+                if (m) m.classList.add('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
-
