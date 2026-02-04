@@ -1,37 +1,34 @@
-/**
- * LASANWORLD - GITHUB PAGES COMPATIBLE SYSTEM
- * Tự động nhận diện thư mục gốc để nạp Header/Footer chính xác
- */
-
 async function includeHTML() {
     const elements = document.querySelectorAll('[data-include]');
     
-    // Tự động tìm đường dẫn gốc (Ví dụ: /lasanworld-web/)
-    const pathArray = window.location.pathname.split('/');
-    const repoName = pathArray[1] ? '/' + pathArray[1] : '';
-    const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
-    
-    // Nếu chạy trên GitHub thì dùng repoName, nếu chạy máy nhà thì để trống
-    const base = isLocal ? '' : repoName;
+    // Kiểm tra xem trang hiện tại có nằm trong thư mục /pages/ không
+    const isSubPage = window.location.pathname.includes('/pages/');
 
     for (const el of elements) {
         let file = el.getAttribute('data-include');
         
-        // Kết hợp lại thành đường dẫn đầy đủ: /lasanworld-web/components/header.html
-        const finalPath = base + file + '?v=' + new Date().getTime();
+        // NẾU Ở TRANG CON: Biến /components/ thành ../components/ để tìm đúng chỗ
+        let finalPath = file;
+        if (isSubPage && file.startsWith('/')) {
+            finalPath = '..' + file;
+        } else if (!isSubPage && file.startsWith('/')) {
+            // Nếu ở trang chủ, chỉ cần bỏ dấu / ở đầu để GitHub Pages dễ nhận diện
+            finalPath = file.substring(1);
+        }
 
         try {
-            const response = await fetch(finalPath);
+            const response = await fetch(finalPath + '?v=' + new Date().getTime());
             if (response.ok) {
                 el.innerHTML = await response.text();
+                // Kích hoạt logic ngay sau khi nạp xong Header
                 if (file.includes('header.html')) {
                     initHeaderLogic();
                 }
             } else {
-                console.error("404 - Không tìm thấy file tại:", finalPath);
+                console.error("404 - Đường dẫn sai:", finalPath);
             }
         } catch (err) {
-            console.error("Lỗi kết nối hệ thống:", err);
+            console.error("Lỗi hệ thống:", err);
         }
     }
 }
@@ -39,13 +36,16 @@ async function includeHTML() {
 function initHeaderLogic() {
     const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
     const flagImg = document.getElementById('current-flag-img');
-    if (flagImg) flagImg.src = savedFlag;
+    if (flagImg) {
+        flagImg.src = savedFlag;
+    }
 }
 
 function changeLang(lang, flagUrl) {
     localStorage.setItem('ls_lang', lang);
     localStorage.setItem('ls_flag', flagUrl);
-    location.reload();
+    location.reload(); 
 }
 
+// Chạy lệnh nạp khi trang đã sẵn sàng
 document.addEventListener('DOMContentLoaded', includeHTML);
