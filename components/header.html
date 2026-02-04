@@ -1,19 +1,15 @@
 <style>
-    /* Ép danh sách nổi lên tầng cao nhất, bất chấp các thẻ khác */
     #lang-dropdown {
-        position: fixed !important; 
-        top: 64px !important;
+        position: fixed !important;
+        top: 65px !important;
         right: 20px !important;
         z-index: 999999 !important;
-        display: none;
-        background: white;
+        background: white !important;
+        display: none; /* Mặc định ẩn */
     }
+    /* Khi bỏ class hidden thì hiện ra */
     #lang-dropdown:not(.hidden) {
         display: block !important;
-    }
-    [data-include] { 
-        position: relative; 
-        z-index: 1001; 
     }
 </style>
 
@@ -22,35 +18,37 @@
         <a href="/" class="text-2xl font-black text-[#2563eb] tracking-tighter">LaSanWorld</a>
         
         <div class="relative" id="lang-switcher">
-            <button onclick="toggleLangMenu()" 
-                    class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full hover:shadow-md transition-all">
+            <button onclick="toggleLangMenu()" class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full hover:shadow-md transition-all">
                 <img id="current-flag-img" src="https://flagcdn.com/w40/vn.png" width="24" class="rounded-sm shadow-sm">
                 <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
             </button>
 
-            <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] py-1 z-[999] max-h-[400px] overflow-y-auto">
-                <script>
-                    (function() {
-                        const langs = [
-                            {id:'vi', n:'Tiếng Việt', c:'vn'}, 
-                            {id:'en', n:'English', c:'us'}, 
-                            {id:'ja', n:'日本語', c:'jp'},
-                            {id:'zh', n:'中文', c:'cn'},
-                            {id:'fr', n:'Français', c:'fr'}
-                        ];
-                        const container = document.currentScript.parentElement;
-                        container.innerHTML = langs.map(l => `
-                            <button onclick="changeLang('${l.id}','https://flagcdn.com/w40/${l.c}.png')" 
-                                    class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50 last:border-0 transition-colors">
-                                <img src="https://flagcdn.com/w40/${l.c}.png" width="22" class="rounded-sm shadow-sm">
-                                <span class="text-sm font-semibold text-slate-700">${l.n}</span>
-                            </button>
-                        `).join('');
-                    })();
-                </script>
-            </div>
+            <div id="lang-dropdown" class="hidden w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl py-1 overflow-y-auto">
+                </div>
         </div>
     </div>
 </nav>
+
+<script>
+    (function() {
+        const langs = [
+            {id:'vi', n:'Tiếng Việt', c:'vn'}, 
+            {id:'en', n:'English', c:'us'}, 
+            {id:'ja', n:'日本語', c:'jp'},
+            {id:'zh', n:'中文', c:'cn'},
+            {id:'fr', n:'Français', c:'fr'}
+        ];
+        const container = document.getElementById('lang-dropdown');
+        if (container) {
+            container.innerHTML = langs.map(l => `
+                <button onclick="changeLang('${l.id}','https://flagcdn.com/w40/${l.c}.png')" 
+                        class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50 last:border-0 transition-colors">
+                    <img src="https://flagcdn.com/w40/${l.c}.png" width="22" class="rounded-sm shadow-sm">
+                    <span class="text-sm font-semibold text-slate-700">${l.n}</span>
+                </button>
+            `).join('');
+        }
+    })();
+</script>
