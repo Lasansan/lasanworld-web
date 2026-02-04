@@ -4,81 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaSanWorld - Fast | Secure | Effective | Sustainable</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary-blue': '#1264AB',
-                        'logo-blue': '#2563eb',
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { 'primary-blue': '#1264AB' } } } }
     </script>
 </head>
-
 <body class="bg-white text-slate-900 font-sans antialiased">
     <div id="header-component"></div>
 
-    <main class="relative overflow-hidden pt-20 pb-32">
+    <main class="relative pt-20 pb-32">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 text-blue-600">
-                LaSanWorld
-            </h1>
-            
-            <p class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 font-medium leading-relaxed">
-                Góc nhỏ chia sẻ mẹo vặt hữu ích, gợi ý sản phẩm chất lượng và trò chơi giải trí mỗi ngày mang đến niềm vui nho nhỏ cho cuộc sống của bạn.
-            </p>
-            
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 text-blue-600">LaSanWorld</h1>
+            <p class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 font-medium">Góc nhỏ chia sẻ mẹo vặt hữu ích, gợi ý sản phẩm chất lượng và trò chơi giải trí.</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="/pages/products.html" class="border-2 border-[#1264AB] text-[#1264AB] px-10 py-5 rounded-2xl font-black antialiased tracking-wide hover:bg-blue-50 transition duration-300">
-                    Khám phá Sản phẩm
-                </a>
-                
-                <a href="/pages/game.html" class="bg-[#1264AB] text-white px-10 py-5 rounded-2xl font-black antialiased subpixel-antialiased tracking-wide hover:scale-105 transition duration-300 shadow-sm">
-                    Trải nghiệm Game
-                </a>
+                <a href="/pages/products.html" class="border-2 border-[#1264AB] text-[#1264AB] px-10 py-5 rounded-2xl font-black hover:bg-blue-50 transition">Khám phá Sản phẩm</a>
+                <a href="/pages/game.html" class="bg-[#1264AB] text-white px-10 py-5 rounded-2xl font-black hover:scale-105 transition shadow-sm">Trải nghiệm Game</a>
             </div>
         </div>
     </main>
 
-   <section class="bg-slate-50 py-24">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="p-8 bg-white rounded-3xl shadow-sm border border-slate-100">
-                <div class="text-[#1264AB] font-black text-2xl mb-2">FAST</div>
-                <p class="text-sm text-slate-500">Tốc độ truy cập và xử lý vượt trội.</p>
-            </div>
-
-            <div class="p-8 bg-white rounded-3xl shadow-sm border border-slate-100">
-                <div class="text-[#1264AB] font-black text-2xl mb-2">SECURE</div>
-                <p class="text-sm text-slate-500">Bảo mật thông tin và dữ liệu tối đa.</p>
-            </div>
-
-            <div class="p-8 bg-white rounded-3xl shadow-sm border border-slate-100">
-                <div class="text-[#1264AB] font-black text-2xl mb-2">EFFECTIVE</div>
-                <p class="text-sm text-slate-500">Hiệu quả thực tế cho người dùng.</p>
-            </div>
-
-            <div class="p-8 bg-white rounded-3xl shadow-sm border border-slate-100">
-                <div class="text-[#1264AB] font-black text-2xl mb-2">SUSTAINABLE</div>
-                <p class="text-sm text-slate-500">Phát triển bền vững và lâu dài.</p>
-            </div>
-        </div>
-    </section>
-
-    <div id="footer-component"></div>
-
-    <script src="assets/js/main.js?v=999"></script>
+    <script>
+        // CODE THẦN THÁNH: HIỆN LÁ CỜ TRỰC TIẾP
+        async function loadHeader() {
+            const currentLang = localStorage.getItem('ls_lang') || 'vi';
+            const hRes = await fetch('components/header.html');
+            const tRes = await fetch('data/translations.json');
+            
+            if (hRes.ok && tRes.ok) {
+                const html = await hRes.text();
+                const trans = await tRes.json();
+                
+                document.getElementById('header-component').innerHTML = html;
+                
+                // Ép hiện lá cờ ngay tại đây
+                const flagEl = document.getElementById('current-flag');
+                if (flagEl) flagEl.innerText = trans[currentLang].flag;
+                
+                // Vẽ danh sách khi bấm vào
+                const dropdown = document.getElementById('lang-dropdown');
+                if (dropdown) {
+                    dropdown.innerHTML = Object.keys(trans).map(l => `
+                        <button onclick="localStorage.setItem('ls_lang','${l}');location.reload();" style="width:100%; display:flex; align-items:center; gap:12px; padding:12px 16px; border:none; background:none; cursor:pointer;">
+                            <span style="font-size:1.2rem">${trans[l].flag}</span>
+                            <span style="font-size:0.9rem; font-weight:600">${trans[l].label}</span>
+                        </button>
+                    `).join('');
+                }
+            }
+        }
+        window.addEventListener('DOMContentLoaded', loadHeader);
+        function toggleLangMenu() { document.getElementById('lang-dropdown').classList.toggle('hidden'); }
+    </script>
 </body>
 </html>
