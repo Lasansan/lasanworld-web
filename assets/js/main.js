@@ -9,25 +9,18 @@ async function includeHTML() {
             if (response.ok) {
                 el.innerHTML = await response.text();
                 if (file.includes('header.html')) {
-                    initHeaderLogic();
+                    const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
+                    const flagImg = document.getElementById('current-flag-img');
+                    if (flagImg) flagImg.src = savedFlag;
                 }
             }
         } catch (err) { console.error("Lỗi:", err); }
     }
 }
 
-function initHeaderLogic() {
-    const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
-    const flagImg = document.getElementById('current-flag-img');
-    if (flagImg) flagImg.src = savedFlag;
-}
-
-// HÀM QUAN TRỌNG ĐỂ MỞ DANH SÁCH QUỐC GIA
 function toggleLangMenu() {
     const dropdown = document.getElementById('lang-dropdown');
-    if (dropdown) {
-        dropdown.classList.toggle('hidden');
-    }
+    if (dropdown) dropdown.classList.toggle('hidden');
 }
 
 function changeLang(lang, flagUrl) {
@@ -36,12 +29,11 @@ function changeLang(lang, flagUrl) {
     location.reload();
 }
 
-window.addEventListener('click', function(e) {
-    const switcher = document.getElementById('lang-switcher');
-    if (switcher && !switcher.contains(e.target)) {
-        const dropdown = document.getElementById('lang-dropdown');
-        if (dropdown) dropdown.classList.add('hidden');
-    }
-});
-
 document.addEventListener('DOMContentLoaded', includeHTML);
+// Đóng menu khi bấm ra ngoài
+window.onclick = function(e) {
+    if (!e.target.closest('#lang-switcher')) {
+        const d = document.getElementById('lang-dropdown');
+        if (d) d.classList.add('hidden');
+    }
+}
