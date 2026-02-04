@@ -1,7 +1,12 @@
 const getPath = (url) => {
     const isSubPage = window.location.pathname.includes('/pages/');
-    // Thêm ?v=... để ép trình duyệt không dùng bản cũ
     return (isSubPage ? '../' : '') + url + '?v=' + new Date().getTime();
+};
+
+// Từ điển lá cờ dự phòng để hiện ngay lập tức
+const flagMap = {
+    'vi': '🇻🇳', 'en': '🇺🇸', 'en-AU': '🇦🇺', 'ja': '🇯🇵', 
+    'zh': '🇨🇳', 'fr': '🇫🇷', 'de': '🇩🇪', 'ko': '🇰🇷', 'es': '🇪🇸'
 };
 
 let currentLang = localStorage.getItem('ls_lang') || 'vi';
@@ -19,15 +24,15 @@ async function initLaSanWorld() {
             
             document.getElementById('header-component').innerHTML = headerHtml;
             
-            // ÉP HIỆN LÁ CỜ NGAY LẬP TỨC
+            // HIỆN LÁ CỜ: Ưu tiên JSON, nếu lỗi thì dùng dự phòng
             const flagBtn = document.getElementById('current-flag');
-            if (flagBtn && translations[currentLang]) {
-                flagBtn.innerText = translations[currentLang].flag;
+            if (flagBtn) {
+                flagBtn.innerText = translations[currentLang]?.flag || flagMap[currentLang];
             }
             
             renderLangMenu(translations);
         }
-    } catch (e) { console.error(e); }
+    } catch (e) { console.error("Lỗi: ", e); }
 }
 
 function renderLangMenu(translations) {
@@ -35,9 +40,9 @@ function renderLangMenu(translations) {
     if (!dropdown) return;
 
     dropdown.innerHTML = Object.keys(translations).map(lang => `
-        <button onclick="changeLanguage('${lang}')" style="width:100%; display:flex; align-items:center; gap:12px; padding:10px 16px; border:none; background:none; cursor:pointer; text-align:left;">
-            <span style="font-size:1.2rem">${translations[lang].flag}</span>
-            <span style="font-size:0.9rem; font-weight:500">${translations[lang].label}</span>
+        <button onclick="changeLanguage('${lang}')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 transition-colors text-left border-b border-slate-50 last:border-0">
+            <span class="text-xl">${translations[lang].flag}</span>
+            <span class="text-sm font-semibold text-slate-700">${translations[lang].label}</span>
         </button>
     `).join('');
 }
