@@ -6,17 +6,37 @@
     <title>LaSanWorld - Fast | Secure | Effective | Sustainable</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { 'primary-blue': '#1264AB' } } } }
-    </script>
 </head>
 <body class="bg-white text-slate-900 font-sans antialiased">
-    <div id="header-component"></div>
+
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+            <a href="/" class="text-2xl font-black text-[#2563eb]">LaSanWorld</a>
+            
+            <div class="relative">
+                <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')" class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full">
+                    <span id="current-flag-display" class="text-xl">🇻🇳</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2"></path></svg>
+                </button>
+                <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-2xl shadow-2xl py-1 overflow-hidden">
+                    <button onclick="changeLang('vi','🇻🇳')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50">
+                        <span class="text-lg">🇻🇳</span> <span class="text-sm font-medium">Tiếng Việt</span>
+                    </button>
+                    <button onclick="changeLang('en','🇺🇸')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50">
+                        <span class="text-lg">🇺🇸</span> <span class="text-sm font-medium">English</span>
+                    </button>
+                    <button onclick="changeLang('en-AU','🇦🇺')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left">
+                        <span class="text-lg">🇦🇺</span> <span class="text-sm font-medium">Australia</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <main class="relative pt-20 pb-32">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 text-blue-600">LaSanWorld</h1>
-            <p class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 font-medium">Góc nhỏ chia sẻ mẹo vặt hữu ích, gợi ý sản phẩm chất lượng và trò chơi giải trí.</p>
+            <p id="txt-slogan" class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 font-medium">Nhanh chóng | Bảo mật | Hiệu quả | Bền vững</p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="/pages/products.html" class="border-2 border-[#1264AB] text-[#1264AB] px-10 py-5 rounded-2xl font-black hover:bg-blue-50 transition">Khám phá Sản phẩm</a>
                 <a href="/pages/game.html" class="bg-[#1264AB] text-white px-10 py-5 rounded-2xl font-black hover:scale-105 transition shadow-sm">Trải nghiệm Game</a>
@@ -25,36 +45,20 @@
     </main>
 
     <script>
-        // CODE THẦN THÁNH: HIỆN LÁ CỜ TRỰC TIẾP
-        async function loadHeader() {
-            const currentLang = localStorage.getItem('ls_lang') || 'vi';
-            const hRes = await fetch('components/header.html');
-            const tRes = await fetch('data/translations.json');
-            
-            if (hRes.ok && tRes.ok) {
-                const html = await hRes.text();
-                const trans = await tRes.json();
-                
-                document.getElementById('header-component').innerHTML = html;
-                
-                // Ép hiện lá cờ ngay tại đây
-                const flagEl = document.getElementById('current-flag');
-                if (flagEl) flagEl.innerText = trans[currentLang].flag;
-                
-                // Vẽ danh sách khi bấm vào
-                const dropdown = document.getElementById('lang-dropdown');
-                if (dropdown) {
-                    dropdown.innerHTML = Object.keys(trans).map(l => `
-                        <button onclick="localStorage.setItem('ls_lang','${l}');location.reload();" style="width:100%; display:flex; align-items:center; gap:12px; padding:12px 16px; border:none; background:none; cursor:pointer;">
-                            <span style="font-size:1.2rem">${trans[l].flag}</span>
-                            <span style="font-size:0.9rem; font-weight:600">${trans[l].label}</span>
-                        </button>
-                    `).join('');
-                }
-            }
+        function changeLang(lang, flag) {
+            localStorage.setItem('ls_lang', lang);
+            document.getElementById('current-flag-display').innerText = flag;
+            document.getElementById('lang-dropdown').classList.add('hidden');
+            // Tiểu Ngưu có thể thêm code dịch slogan ở đây nếu muốn
+            location.reload(); 
         }
-        window.addEventListener('DOMContentLoaded', loadHeader);
-        function toggleLangMenu() { document.getElementById('lang-dropdown').classList.toggle('hidden'); }
+        
+        // Khi tải trang, kiểm tra xem trước đó chọn cờ gì
+        window.onload = function() {
+            const savedLang = localStorage.getItem('ls_lang') || 'vi';
+            const flags = {'vi':'🇻🇳', 'en':'🇺🇸', 'en-AU':'🇦🇺'};
+            if(flags[savedLang]) document.getElementById('current-flag-display').innerText = flags[savedLang];
+        }
     </script>
 </body>
 </html>
