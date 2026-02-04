@@ -2,46 +2,64 @@
   "en": {
     "label": "English",
     "flag": "🇺🇸",
-    "slogan": "Fast | Secure | Effective | Sustainable"
+    "slogan": "Fast | Secure | Effective | Sustainable",
+    "explore": "Explore Products",
+    "experience": "Game Experience"
   },
   "en-AU": {
     "label": "Australia",
     "flag": "🇦🇺",
-    "slogan": "Fast | Secure | Effective | Sustainable"
+    "slogan": "Fast | Secure | Effective | Sustainable",
+    "explore": "Explore Products",
+    "experience": "Game Experience"
   },
   "vi": {
     "label": "Tiếng Việt",
     "flag": "🇻🇳",
-    "slogan": "Nhanh chóng | Bảo mật | Hiệu quả | Bền vững"
+    "slogan": "Nhanh chóng | Bảo mật | Hiệu quả | Bền vững",
+    "explore": "Khám phá Sản phẩm",
+    "experience": "Trải nghiệm Game"
   },
   "ja": {
     "label": "日本語",
     "flag": "🇯🇵",
-    "slogan": "高速 | 安全 | 効果"
+    "slogan": "高速 | 安全 | 効果",
+    "explore": "製品を探索する",
+    "experience": "ゲーム体験"
   },
   "zh": {
     "label": "中文",
     "flag": "🇨🇳",
-    "slogan": "快速 | 安全 | 有效"
+    "slogan": "快速 | 安全 | 有效",
+    "explore": "探索产品",
+    "experience": "游戏体验"
   },
   "fr": {
     "label": "Français",
     "flag": "🇫🇷",
-    "slogan": "Rapide | Sécurisé | Efficace"
+    "slogan": "Rapide | Sécurisé | Efficace",
+    "explore": "Explorer les Produits",
+    "experience": "Expérience de Jeu"
   },
   "de": {
     "label": "Deutsch",
     "flag": "🇩🇪",
-    "slogan": "Schnell | Sicher | Effektiv"
+    "slogan": "Schnell | Sicher | Effektiv",
+    "explore": "Produkte entdecken",
+    "experience": "Spielerlebnis"
   },
   "ko": {
     "label": "한국어",
     "flag": "🇰🇷",
-    "slogan": "빠름 | 안전 | 효과적"
+    "slogan": "빠름 | 안전 | 효과적",
+    "explore": "제품 탐색",
+    "experience": "게임 경험"
   },
   "es": {
     "label": "Español",
     "flag": "🇪🇸",
-    "slogan": "Rápido | Seguro | Efectivo"
+    "slogan": "Rápido | Seguro | Efectivo",
+    "explore": "Explorar Productos",
+    "experience": "Experiencia de Juego"
   }
 }
