@@ -1,60 +1,62 @@
-const getPath = (url) => {
-    const isSubPage = window.location.pathname.includes('/pages/');
-    return (isSubPage ? '../' : '') + url + '?v=' + new Date().getTime();
-};
+/**
+ * LASANWORLD - MAIN CONTROL SYSTEM
+ * Xử lý: Nạp Component, Đa ngôn ngữ và Hiển thị lá cờ ảnh thật
+ */
 
-// Từ điển lá cờ dự phòng để hiện ngay lập tức
-const flagMap = {
-    'vi': '🇻🇳', 'en': '🇺🇸', 'en-AU': '🇦🇺', 'ja': '🇯🇵', 
-    'zh': '🇨🇳', 'fr': '🇫🇷', 'de': '🇩🇪', 'ko': '🇰🇷', 'es': '🇪🇸'
-};
-
-let currentLang = localStorage.getItem('ls_lang') || 'vi';
-
-async function initLaSanWorld() {
-    try {
-        const [hRes, tRes] = await Promise.all([
-            fetch(getPath('components/header.html')),
-            fetch(getPath('data/translations.json'))
-        ]);
-
-        if (hRes.ok && tRes.ok) {
-            const headerHtml = await hRes.text();
-            const translations = await tRes.json();
-            
-            document.getElementById('header-component').innerHTML = headerHtml;
-            
-            // HIỆN LÁ CỜ: Ưu tiên JSON, nếu lỗi thì dùng dự phòng
-            const flagBtn = document.getElementById('current-flag');
-            if (flagBtn) {
-                flagBtn.innerText = translations[currentLang]?.flag || flagMap[currentLang];
+// 1. Hàm nạp các mảnh ghép giao diện (Header, Footer)
+async function includeHTML() {
+    const elements = document.querySelectorAll('[data-include]');
+    for (const el of elements) {
+        const file = el.getAttribute('data-include');
+        try {
+            // Thêm tham số time để tránh trình duyệt lưu file cũ (cache)
+            const response = await fetch(file + '?v=' + new Date().getTime());
+            if (response.ok) {
+                el.innerHTML = await response.text();
+                // Nếu là Header thì kích hoạt logic lá cờ
+                if (file.includes('header.html')) {
+                    initHeaderLogic();
+                }
             }
-            
-            renderLangMenu(translations);
+        } catch (err) {
+            console.error("Không thể nạp thành phần:", file, err);
         }
-    } catch (e) { console.error("Lỗi: ", e); }
+    }
 }
 
-function renderLangMenu(translations) {
-    const dropdown = document.getElementById('lang-dropdown');
-    if (!dropdown) return;
-
-    dropdown.innerHTML = Object.keys(translations).map(lang => `
-        <button onclick="changeLanguage('${lang}')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 transition-colors text-left border-b border-slate-50 last:border-0">
-            <span class="text-xl">${translations[lang].flag}</span>
-            <span class="text-sm font-semibold text-slate-700">${translations[lang].label}</span>
-        </button>
-    `).join('');
+// 2. Hàm khởi tạo logic cho Header sau khi nạp xong
+function initHeaderLogic() {
+    const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
+    const flagImg = document.getElementById('current-flag-img');
+    if (flagImg) {
+        flagImg.src = savedFlag;
+    }
 }
 
-function changeLanguage(lang) {
+// 3. Hàm thay đổi ngôn ngữ (Được gọi từ các nút trong Header)
+function changeLang(lang, flagUrl) {
     localStorage.setItem('ls_lang', lang);
+    localStorage.setItem('ls_flag', flagUrl);
+    
+    // Cập nhật ảnh cờ ngay lập tức để người dùng thấy
+    const flagImg = document.getElementById('current-flag-img');
+    if (flagImg) flagImg.src = flagUrl;
+    
+    // Đóng menu và tải lại trang để áp dụng thay đổi
+    const dropdown = document.getElementById('lang-dropdown');
+    if (dropdown) dropdown.classList.add('hidden');
+    
     location.reload();
 }
 
-function toggleLangMenu() {
-    const menu = document.getElementById('lang-dropdown');
-    if (menu) menu.classList.toggle('hidden');
-}
+// 4. Đóng menu ngôn ngữ khi bấm ra ngoài
+window.addEventListener('click', function(e) {
+    const switcher = document.getElementById('lang-switcher');
+    const dropdown = document.getElementById('lang-dropdown');
+    if (switcher && !switcher.contains(e.target)) {
+        if (dropdown) dropdown.classList.add('hidden');
+    }
+});
 
-window.addEventListener('DOMContentLoaded', initLaSanWorld);
+// 5. Chạy hệ thống khi trang web sẵn sàng
+document.addEventListener('DOMContentLoaded', includeHTML);
