@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaSanWorld - Fast | Secure | Effective | Sustainable</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>LaSanWorld - Global Experience</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { 'primary-blue': '#1264AB' } } } }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white text-slate-900 font-sans antialiased">
 
@@ -24,13 +21,14 @@
                 
                 <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl py-1 z-[100] max-h-[400px] overflow-y-auto">
                     <script>
+                        // Danh sách đầy đủ 9 ngôn ngữ với ảnh lá cờ thật
                         const allLangs = [
                             {id:'vi', n:'Tiếng Việt', c:'vn'}, {id:'en', n:'English', c:'us'}, {id:'en-AU', n:'Australia', c:'au'},
                             {id:'ja', n:'日本語', c:'jp'}, {id:'zh', n:'中文', c:'cn'}, {id:'ko', n:'한국어', c:'kr'},
                             {id:'fr', n:'Français', c:'fr'}, {id:'de', n:'Deutsch', c:'de'}, {id:'es', n:'Español', c:'es'}
                         ];
                         document.write(allLangs.map(l => `
-                            <button onclick="changeLang('${l.id}','https://flagcdn.com/w40/${l.c}.png')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50 last:border-0 transition-colors">
+                            <button onclick="changeLang('${l.id}','https://flagcdn.com/w40/${l.c}.png')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50 last:border-0">
                                 <img src="https://flagcdn.com/w40/${l.c}.png" width="22" class="rounded-sm shadow-sm">
                                 <span class="text-sm font-semibold text-slate-700">${l.n}</span>
                             </button>
@@ -43,32 +41,30 @@
 
     <main class="relative pt-20 pb-32 text-center px-6">
         <h1 class="text-6xl md:text-8xl font-black text-blue-600 mb-8 tracking-tighter">LaSanWorld</h1>
-        <p id="txt-slogan" class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 font-medium">Nhanh chóng | Bảo mật | Hiệu quả | Bền vững</p>
+        <p class="max-w-3xl mx-auto text-xl text-slate-500 mb-12">Nhanh chóng | Bảo mật | Hiệu quả | Bền vững</p>
         <div class="flex flex-wrap justify-center gap-4">
             <a href="/pages/products.html" class="border-2 border-[#1264AB] text-[#1264AB] px-10 py-5 rounded-2xl font-black hover:bg-blue-50 transition-all">Khám phá Sản phẩm</a>
-            <a href="/pages/game.html" class="bg-[#1264AB] text-white px-10 py-5 rounded-2xl font-black hover:scale-105 transition-all shadow-lg shadow-blue-100">Trải nghiệm Game</a>
+            <a href="/pages/game.html" class="bg-[#1264AB] text-white px-10 py-5 rounded-2xl font-black hover:scale-105 transition-all shadow-lg">Trải nghiệm Game</a>
         </div>
     </main>
 
     <script>
         function changeLang(lang, flagUrl) {
             localStorage.setItem('ls_lang', lang);
-            localStorage.setItem('ls_flag', flagUrl);
+            localStorage.setItem('ls_flag', flagUrl); // Lưu link ảnh để lần sau mở lại vẫn thấy
             location.reload(); 
         }
         
         window.onload = function() {
-            // Lấy lá cờ đã lưu hoặc mặc định là VN
             const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
             const flagImg = document.getElementById('current-flag-img');
             if(flagImg) flagImg.src = savedFlag;
         }
 
-        // Đóng menu khi bấm ra ngoài
         window.onclick = function(event) {
             if (!event.target.closest('#lang-switcher')) {
                 const menu = document.getElementById('lang-dropdown');
-                if (menu && !menu.classList.contains('hidden')) menu.classList.add('hidden');
+                if (menu) menu.classList.add('hidden');
             }
         }
     </script>
