@@ -1,30 +1,34 @@
 /**
- * LASANWORLD - MAIN CONTROL SYSTEM
- * Xử lý: Nạp Component, Đa ngôn ngữ và Hiển thị lá cờ ảnh thật
+ * LASANWORLD - BỘ NÃO ĐIỀU KHIỂN TRUNG TÂM (FIX LỖI ĐƯỜNG DẪN)
  */
 
-// 1. Hàm nạp các mảnh ghép giao diện (Header, Footer)
 async function includeHTML() {
     const elements = document.querySelectorAll('[data-include]');
     for (const el of elements) {
-        const file = el.getAttribute('data-include');
+        let file = el.getAttribute('data-include');
         try {
-            // Thêm tham số time để tránh trình duyệt lưu file cũ (cache)
-            const response = await fetch(file + '?v=' + new Date().getTime());
+            // Đảm bảo đường dẫn luôn bắt đầu từ gốc (root) bằng dấu /
+            const safePath = file.startsWith('/') ? file : '/' + file;
+            
+            // Thêm mã v để ép trình duyệt không dùng lại file cũ trong bộ nhớ
+            const response = await fetch(safePath + '?v=' + new Date().getTime());
+            
             if (response.ok) {
                 el.innerHTML = await response.text();
-                // Nếu là Header thì kích hoạt logic lá cờ
+                // Nếu nạp Header thành công thì kích hoạt ảnh lá cờ
                 if (file.includes('header.html')) {
                     initHeaderLogic();
                 }
+            } else {
+                console.error("Lỗi nạp tệp:", safePath);
             }
         } catch (err) {
-            console.error("Không thể nạp thành phần:", file, err);
+            console.error("Không thể kết nối với tệp giao diện:", err);
         }
     }
 }
 
-// 2. Hàm khởi tạo logic cho Header sau khi nạp xong
+// Hàm hiển thị lá cờ đã lưu
 function initHeaderLogic() {
     const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
     const flagImg = document.getElementById('current-flag-img');
@@ -33,23 +37,20 @@ function initHeaderLogic() {
     }
 }
 
-// 3. Hàm thay đổi ngôn ngữ (Được gọi từ các nút trong Header)
+// Hàm đổi ngôn ngữ và lưu vào bộ nhớ máy
 function changeLang(lang, flagUrl) {
     localStorage.setItem('ls_lang', lang);
     localStorage.setItem('ls_flag', flagUrl);
     
-    // Cập nhật ảnh cờ ngay lập tức để người dùng thấy
-    const flagImg = document.getElementById('current-flag-img');
-    if (flagImg) flagImg.src = flagUrl;
-    
-    // Đóng menu và tải lại trang để áp dụng thay đổi
+    // Đóng menu thả xuống ngay lập tức
     const dropdown = document.getElementById('lang-dropdown');
     if (dropdown) dropdown.classList.add('hidden');
     
+    // Tải lại trang để áp dụng
     location.reload();
 }
 
-// 4. Đóng menu ngôn ngữ khi bấm ra ngoài
+// Đóng menu khi người dùng bấm chuột ra ngoài vùng menu
 window.addEventListener('click', function(e) {
     const switcher = document.getElementById('lang-switcher');
     const dropdown = document.getElementById('lang-dropdown');
@@ -58,5 +59,5 @@ window.addEventListener('click', function(e) {
     }
 });
 
-// 5. Chạy hệ thống khi trang web sẵn sàng
+// Chạy hệ thống nạp giao diện khi trang web tải xong
 document.addEventListener('DOMContentLoaded', includeHTML);
