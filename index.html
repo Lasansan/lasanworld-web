@@ -12,86 +12,6 @@
     <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
             <a href="/" class="text-2xl font-black text-[#2563eb]">LaSanWorld</a>
-            
-            <div class="relative" id="lang-switcher">
-                <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')" class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full hover:shadow-md transition-all">
-                    <img id="current-flag-img" src="https://flagcdn.com/w40/vn.png" width="24" class="rounded-sm shadow-sm">
-                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2"></path></svg>
-                </button>
-                
-                <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl py-1 z-[100] max-h-[400px] overflow-y-auto">
-                    <script>
-                        const allLangs = [
-                            {id:'vi', n:'Tiếng Việt', c:'vn'}, {id:'en', n:'English', c:'us'}, {id:'en-AU', n:'Australia', c:'au'},
-                            {id:'ja', n:'日本語', c:'jp'}, {id:'zh', n:'中文', c:'cn'}, {id:'ko', n:'한국어', c:'kr'},
-                            {id:'fr', n:'Français', c:'fr'}, {id:'de', n:'Deutsch', c:'de'}, {id:'es', n:'Español', c:'es'}
-                        ];
-                        document.write(allLangs.map(l => `
-                            <button onclick="changeLang('${l.id}','https://flagcdn.com/w40/${l.c}.png')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50 last:border-0 transition-colors">
-                                <img src="https://flagcdn.com/w40/${l.c}.png" width="22" class="rounded-sm shadow-sm">
-                                <span class="text-sm font-semibold text-slate-700">${l.n}</span>
-                            </button>
-                        `).join(''));
-                    </script>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="relative pt-20 pb-32">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 text-blue-600">LaSanWorld</h1>
-            
-            <p id="txt-slogan" class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 font-medium leading-relaxed">
-                Góc nhỏ chia sẻ mẹo vặt hữu ích, gợi ý sản phẩm chất lượng và trò chơi giải trí mỗi ngày mang đến niềm vui nho nhỏ cho cuộc sống của bạn.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="/pages/products.html" class="border-2 border-[#1264AB] text-[#1264AB] px-10 py-5 rounded-2xl font-black hover:bg-blue-50 transition-all">Khám phá Sản phẩm</a>
-                <a href="/pages/game.html" class="bg-[#1264AB] text-white px-10 py-5 rounded-2xl font-black hover:scale-105 transition-all shadow-lg shadow-blue-100">Trải nghiệm Game</a>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        function changeLang(lang, flagUrl) {
-            localStorage.setItem('ls_lang', lang);
-            localStorage.setItem('ls_flag', flagUrl);
-            location.reload(); 
-        }
-        
-        window.onload = function() {
-            // Tự động nhận diện lá cờ đã lưu
-            const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
-            const flagImg = document.getElementById('current-flag-img');
-            if(flagImg) flagImg.src = savedFlag;
-        }
-
-        // Đóng menu khi bấm ra ngoài
-        window.onclick = function(event) {
-            if (!event.target.closest('#lang-switcher')) {
-                const menu = document.getElementById('lang-dropdown');
-                if (menu && !menu.classList.contains('hidden')) menu.classList.add('hidden');
-            }
-        }
-    </script>
-</body>
-</html>
-Thiên
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaSanWorld - Fast | Secure | Effective | Sustainable</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-white text-slate-900 font-sans antialiased">
-
-    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
-            <a href="/" class="text-2xl font-black text-[#2563eb]">LaSanWorld</a>
             <div class="relative" id="lang-switcher">
                 <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')" class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full hover:shadow-md transition-all">
                     <img id="current-flag-img" src="https://flagcdn.com/w40/vn.png" width="24" class="rounded-sm shadow-sm">
@@ -128,22 +48,10 @@ Thiên
     </main>
 
     <section class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 pb-20">
-        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all">
-            <h3 class="font-black text-2xl text-blue-600 mb-2">FAST</h3>
-            <p class="text-slate-500 leading-relaxed">Tốc độ truy cập và xử lý vượt trội mang lại trải nghiệm mượt mà.</p>
-        </div>
-        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all">
-            <h3 class="font-black text-2xl text-blue-600 mb-2">SECURE</h3>
-            <p class="text-slate-500 leading-relaxed">Bảo mật thông tin và dữ liệu tối đa cho người dùng.</p>
-        </div>
-        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all">
-            <h3 class="font-black text-2xl text-blue-600 mb-2">EFFECTIVE</h3>
-            <p class="text-slate-500 leading-relaxed">Hiệu quả thực tế và giá trị thực thụ trong từng sản phẩm.</p>
-        </div>
-        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all">
-            <h3 class="font-black text-2xl text-blue-600 mb-2">SUSTAINABLE</h3>
-            <p class="text-slate-500 leading-relaxed">Phát triển bền vững và gắn kết lâu dài cùng cộng đồng.</p>
-        </div>
+        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100"><h3 class="font-black text-2xl text-blue-600 mb-2">FAST</h3><p class="text-slate-500">Tốc độ truy cập và xử lý vượt trội.</p></div>
+        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100"><h3 class="font-black text-2xl text-blue-600 mb-2">SECURE</h3><p class="text-slate-500">Bảo mật thông tin và dữ liệu tối đa.</p></div>
+        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100"><h3 class="font-black text-2xl text-blue-600 mb-2">EFFECTIVE</h3><p class="text-slate-500">Hiệu quả thực tế cho người dùng.</p></div>
+        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100"><h3 class="font-black text-2xl text-blue-600 mb-2">SUSTAINABLE</h3><p class="text-slate-500">Phát triển bền vững và lâu dài.</p></div>
     </section>
 
     <script>
@@ -155,6 +63,12 @@ Thiên
         window.onload = function() {
             const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
             document.getElementById('current-flag-img').src = savedFlag;
+        }
+        window.onclick = function(e) {
+            if (!e.target.closest('#lang-switcher')) {
+                const m = document.getElementById('lang-dropdown');
+                if (m) m.classList.add('hidden');
+            }
         }
     </script>
 </body>
