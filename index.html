@@ -3,61 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaSanWorld - Fast | Secure | Effective | Sustainable</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>LaSanWorld</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-slate-900 font-sans antialiased">
 
-    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
             <a href="/" class="text-2xl font-black text-[#2563eb]">LaSanWorld</a>
             
-            <div class="relative">
-                <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')" class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full">
-                    <span id="current-flag-display" class="text-xl">🇻🇳</span>
+            <div class="relative" id="lang-switcher">
+                <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')" class="flex items-center gap-2 bg-slate-50 border px-3 py-1.5 rounded-full">
+                    <img id="current-flag-img" src="https://flagcdn.com/w40/vn.png" width="24" class="rounded-sm">
                     <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2"></path></svg>
                 </button>
-                <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-2xl shadow-2xl py-1 overflow-hidden">
-                    <button onclick="changeLang('vi','🇻🇳')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50">
-                        <span class="text-lg">🇻🇳</span> <span class="text-sm font-medium">Tiếng Việt</span>
+                
+                <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded-2xl shadow-2xl py-1 z-[100]">
+                    <button onclick="changeLang('vi','https://flagcdn.com/w40/vn.png')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left">
+                        <img src="https://flagcdn.com/w40/vn.png" width="20"> <span class="text-sm font-semibold">Tiếng Việt</span>
                     </button>
-                    <button onclick="changeLang('en','🇺🇸')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left border-b border-slate-50">
-                        <span class="text-lg">🇺🇸</span> <span class="text-sm font-medium">English</span>
+                    <button onclick="changeLang('en','https://flagcdn.com/w40/us.png')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left">
+                        <img src="https://flagcdn.com/w40/us.png" width="20"> <span class="text-sm font-semibold">English</span>
                     </button>
-                    <button onclick="changeLang('en-AU','🇦🇺')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left">
-                        <span class="text-lg">🇦🇺</span> <span class="text-sm font-medium">Australia</span>
+                    <button onclick="changeLang('en-AU','https://flagcdn.com/w40/au.png')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 text-left">
+                        <img src="https://flagcdn.com/w40/au.png" width="20"> <span class="text-sm font-semibold">Australia</span>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main class="relative pt-20 pb-32">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 text-blue-600">LaSanWorld</h1>
-            <p id="txt-slogan" class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 font-medium">Nhanh chóng | Bảo mật | Hiệu quả | Bền vững</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="/pages/products.html" class="border-2 border-[#1264AB] text-[#1264AB] px-10 py-5 rounded-2xl font-black hover:bg-blue-50 transition">Khám phá Sản phẩm</a>
-                <a href="/pages/game.html" class="bg-[#1264AB] text-white px-10 py-5 rounded-2xl font-black hover:scale-105 transition shadow-sm">Trải nghiệm Game</a>
-            </div>
+    <main class="relative pt-20 pb-32 text-center">
+        <h1 class="text-6xl md:text-8xl font-black text-blue-600 mb-8">LaSanWorld</h1>
+        <p class="text-xl text-slate-500 mb-12">Nhanh chóng | Bảo mật | Hiệu quả | Bền vững</p>
+        <div class="flex justify-center gap-4">
+            <a href="/pages/products.html" class="border-2 border-[#1264AB] text-[#1264AB] px-10 py-5 rounded-2xl font-black">Khám phá Sản phẩm</a>
+            <a href="/pages/game.html" class="bg-[#1264AB] text-white px-10 py-5 rounded-2xl font-black shadow-lg shadow-blue-200">Trải nghiệm Game</a>
         </div>
     </main>
 
     <script>
-        function changeLang(lang, flag) {
+        function changeLang(lang, flagUrl) {
             localStorage.setItem('ls_lang', lang);
-            document.getElementById('current-flag-display').innerText = flag;
-            document.getElementById('lang-dropdown').classList.add('hidden');
-            // Tiểu Ngưu có thể thêm code dịch slogan ở đây nếu muốn
+            localStorage.setItem('ls_flag', flagUrl); // Lưu thêm link ảnh lá cờ
             location.reload(); 
         }
         
-        // Khi tải trang, kiểm tra xem trước đó chọn cờ gì
         window.onload = function() {
-            const savedLang = localStorage.getItem('ls_lang') || 'vi';
-            const flags = {'vi':'🇻🇳', 'en':'🇺🇸', 'en-AU':'🇦🇺'};
-            if(flags[savedLang]) document.getElementById('current-flag-display').innerText = flags[savedLang];
+            const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
+            document.getElementById('current-flag-img').src = savedFlag;
         }
     </script>
 </body>
