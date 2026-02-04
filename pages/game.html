@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trải nghiệm Game - LaSanWorld</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white font-sans antialiased">
+
+    <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+            <a href="/" class="text-2xl font-black text-blue-500">LaSanWorld</a>
+            <div class="relative" id="lang-switcher">
+                <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')" class="flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full hover:bg-slate-700 transition-all">
+                    <img id="current-flag-img" src="https://flagcdn.com/w40/vn.png" width="24" class="rounded-sm shadow-sm">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2"></path></svg>
+                </button>
+                <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl py-1 z-[100] max-h-[400px] overflow-y-auto">
+                    <script>
+                        const allLangs = [
+                            {id:'vi', n:'Tiếng Việt', c:'vn'}, {id:'en', n:'English', c:'us'}, {id:'ja', n:'日本語', c:'jp'}
+                        ];
+                        document.write(allLangs.map(l => `
+                            <button onclick="changeLang('${l.id}','https://flagcdn.com/w40/${l.c}.png')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-600 text-left transition-colors">
+                                <img src="https://flagcdn.com/w40/${l.c}.png" width="22" class="rounded-sm shadow-sm">
+                                <span class="text-sm font-semibold">${l.n}</span>
+                            </button>
+                        `).join(''));
+                    </script>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pt-20 pb-20 text-center">
+        <h1 class="text-5xl font-black text-blue-500 mb-6 tracking-tighter">Gaming Center</h1>
+        <p class="text-slate-400 mb-12 text-lg">Khám phá thế giới giải trí đầy màu sắc cùng LaSanWorld.</p>
+        
+        <div class="max-w-4xl mx-auto aspect-video bg-slate-800 rounded-3xl border-4 border-slate-700 flex flex-col items-center justify-center shadow-2xl">
+            <div class="w-20 h-20 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-6"></div>
+            <p class="text-xl font-bold text-slate-300">Hệ thống đang tải trò chơi...</p>
+            <p class="text-sm text-slate-500 mt-2">Vui lòng quay lại sau giây lát!</p>
+        </div>
+    </main>
+
+    <script>
+        function changeLang(lang, flagUrl) {
+            localStorage.setItem('ls_lang', lang);
+            localStorage.setItem('ls_flag', flagUrl);
+            location.reload(); 
+        }
+        window.onload = function() {
+            const savedFlag = localStorage.getItem('ls_flag') || 'https://flagcdn.com/w40/vn.png';
+            document.getElementById('current-flag-img').src = savedFlag;
+        }
+    </script>
+</body>
+</html>
 
