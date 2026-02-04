@@ -1,36 +1,37 @@
 /**
- * LASANWORLD - SMART PATH CONTROL
- * Tự động sửa lỗi đường dẫn trên GitHub Pages
+ * LASANWORLD - GITHUB PAGES COMPATIBLE SYSTEM
+ * Tự động nhận diện thư mục gốc để nạp Header/Footer chính xác
  */
 
 async function includeHTML() {
     const elements = document.querySelectorAll('[data-include]');
     
-    // Kiểm tra xem đang ở trang chủ hay trang con trong /pages/
-    const isSubPage = window.location.pathname.includes('/pages/');
+    // Tự động tìm đường dẫn gốc (Ví dụ: /lasanworld-web/)
+    const pathArray = window.location.pathname.split('/');
+    const repoName = pathArray[1] ? '/' + pathArray[1] : '';
+    const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
     
+    // Nếu chạy trên GitHub thì dùng repoName, nếu chạy máy nhà thì để trống
+    const base = isLocal ? '' : repoName;
+
     for (const el of elements) {
         let file = el.getAttribute('data-include');
         
-        // BIẾN ĐỔI ĐƯỜNG DẪN: 
-        // Nếu ở trong /pages/, thêm ../ để ra ngoài thư mục gốc tìm components
-        let finalPath = file;
-        if (isSubPage) {
-            finalPath = '..' + file;
-        }
+        // Kết hợp lại thành đường dẫn đầy đủ: /lasanworld-web/components/header.html
+        const finalPath = base + file + '?v=' + new Date().getTime();
 
         try {
-            const response = await fetch(finalPath + '?v=' + new Date().getTime());
+            const response = await fetch(finalPath);
             if (response.ok) {
                 el.innerHTML = await response.text();
                 if (file.includes('header.html')) {
                     initHeaderLogic();
                 }
             } else {
-                console.error("Không tìm thấy file tại:", finalPath);
+                console.error("404 - Không tìm thấy file tại:", finalPath);
             }
         } catch (err) {
-            console.error("Lỗi kết nối tệp:", err);
+            console.error("Lỗi kết nối hệ thống:", err);
         }
     }
 }
@@ -47,5 +48,4 @@ function changeLang(lang, flagUrl) {
     location.reload();
 }
 
-// Chạy lệnh nạp
 document.addEventListener('DOMContentLoaded', includeHTML);
