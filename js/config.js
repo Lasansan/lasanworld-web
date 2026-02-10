@@ -38,14 +38,18 @@ function loadLangList() {
     const dropdown = document.getElementById('lang-dropdown-global');
     if (!dropdown) return;
 
-    const isGamePage = window.location.pathname.includes('game.html');
+    // Cách nhận diện trang Game mới: kiểm tra cả tiêu đề và đường dẫn
+    const isGamePage = window.location.href.toLowerCase().includes('game') || 
+                       document.title.toLowerCase().includes('game');
+    
     dropdown.innerHTML = ''; 
 
     Object.keys(countryConfig).forEach(code => {
-        // Trang Game hiện tất cả, trang khác chỉ hiện nước nào status là ON
+        // CHỈ cho phép hiện danh sách ở trang Game. 
+        // Ở các trang khác, chỉ hiện nếu Tiểu Ngưu chủ động bật status: "ON"
         if (isGamePage || countryConfig[code].status === "ON") {
             dropdown.innerHTML += `
-                <button onclick="selectLang('${code}')" class="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-50 transition-colors">
+                <button class="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-50 transition-colors">
                     <img src="https://flagcdn.com/${code.toLowerCase()}.svg" width="20" class="rounded-sm shadow-sm">
                     <span class="text-sm font-medium text-slate-700">${countryConfig[code].name}</span>
                 </button>`;
