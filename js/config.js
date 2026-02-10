@@ -24,3 +24,49 @@ function redirectAmazonLinks(userCountryCode) {
         }
     });
 }
+// Hàm điều khiển hiển thị ngôn ngữ dựa trên trang đang xem
+function updateLanguageDisplay() {
+    const extendedNav = document.getElementById('extended-languages');
+    if (!extendedNav) return;
+
+    // Kiểm tra nếu đang ở trang Game
+    const isGamePage = window.location.pathname.includes('game.html');
+
+    if (isGamePage) {
+        // Nếu là trang Game, hiện tất cả các nước có trong cấu hình
+        extendedNav.classList.remove('hidden');
+        extendedNav.innerHTML = ''; // Xóa trắng để nạp lại
+
+        Object.keys(countryConfig).forEach(code => {
+            if (code !== 'US') { // Không lặp lại cờ Mỹ đã có sẵn
+                extendedNav.innerHTML += `
+                    <button class="w-6 h-6 rounded-full overflow-hidden border border-gray-200" title="${countryConfig[code].name}">
+                        <img src="https://flagcdn.com/${code.toLowerCase()}.svg" alt="${countryConfig[code].name}">
+                    </button>`;
+            }
+        });
+    } else {
+        // Nếu không phải trang Game, chỉ hiện những nước được bật "ON"
+        let hasOnContent = false;
+        extendedNav.innerHTML = '';
+
+        Object.keys(countryConfig).forEach(code => {
+            if (code !== 'US' && countryConfig[code].status === 'ON') {
+                hasOnContent = true;
+                extendedNav.innerHTML += `
+                    <button class="w-6 h-6 rounded-full overflow-hidden border border-gray-200" title="${countryConfig[code].name}">
+                        <img src="https://flagcdn.com/${code.toLowerCase()}.svg" alt="${countryConfig[code].name}">
+                    </button>`;
+            }
+        });
+
+        if (hasOnContent) {
+            extendedNav.classList.remove('hidden');
+        } else {
+            extendedNav.classList.add('hidden');
+        }
+    }
+}
+
+// Chạy hàm ngay khi trang web tải xong
+window.addEventListener('DOMContentLoaded', updateLanguageDisplay);
