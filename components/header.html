@@ -18,15 +18,13 @@
                     </svg>
                 </button>
 
-                <div id="language-nav" class="flex items-center gap-2">
-                    <button class="w-6 h-6 rounded-full overflow-hidden border border-gray-200" title="English - US">
-                        <img src="https://flagcdn.com/us.svg" alt="English - US">
-                    </button>
-                    
-                    <div id="extended-languages" class="hidden flex gap-2"></div>
-                </div>
-            </div>
+               <div class="relative" id="lang-switcher">
+    <button onclick="toggleGlobalLang()" class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full hover:shadow-md">
+        <img id="current-flag-main" src="https://flagcdn.com/us.svg" width="24" class="rounded-sm">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+
+    <div id="lang-dropdown-global" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl py-2 border border-slate-100 shadow-xl z-[9999]">
         </div>
-    </div>
-</header>
+</div>
 <script src="/js/config.js"></script>
