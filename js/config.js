@@ -38,23 +38,29 @@ function loadLangList() {
     const dropdown = document.getElementById('lang-dropdown-global');
     if (!dropdown) return;
 
-    // Cách nhận diện trang Game mới: kiểm tra cả tiêu đề và đường dẫn
-    const isGamePage = window.location.href.toLowerCase().includes('game') || 
-                       document.title.toLowerCase().includes('game');
+    // Kiểm tra trang: Nếu đường dẫn chứa 'game' thì coi như trang game
+    const isGamePage = window.location.href.toLowerCase().indexOf('game') > -1;
     
     dropdown.innerHTML = ''; 
+    let hasItems = false;
 
     Object.keys(countryConfig).forEach(code => {
-        // CHỈ cho phép hiện danh sách ở trang Game. 
-        // Ở các trang khác, chỉ hiện nếu Tiểu Ngưu chủ động bật status: "ON"
+        // Luôn hiện ở trang Game, trang khác chỉ hiện nếu status ON
         if (isGamePage || countryConfig[code].status === "ON") {
+            hasItems = true;
             dropdown.innerHTML += `
-                <button class="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-50 transition-colors">
-                    <img src="https://flagcdn.com/${code.toLowerCase()}.svg" width="20" class="rounded-sm shadow-sm">
+                <button onclick="toggleGlobalLang()" class="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-50">
+                    <img src="https://flagcdn.com/${code.toLowerCase()}.svg" width="20" class="rounded-sm">
                     <span class="text-sm font-medium text-slate-700">${countryConfig[code].name}</span>
                 </button>`;
         }
     });
+
+    // Nếu không có gì để hiện thì ẩn luôn cái nút cờ để tránh lỗi giao diện
+    if (!hasItems && !isGamePage) {
+        const switcher = document.getElementById('lang-switcher');
+        if (switcher) switcher.style.display = 'none';
+    }
 }
 
 // 3. Lệnh thực thi khi trang web sẵn sàng
