@@ -25,48 +25,42 @@ function redirectAmazonLinks(userCountryCode) {
     });
 }
 // Hàm điều khiển hiển thị ngôn ngữ dựa trên trang đang xem
-function updateLanguageDisplay() {
-    const extendedNav = document.getElementById('extended-languages');
-    if (!extendedNav) return;
-
-    // Kiểm tra nếu đang ở trang Game
-    const isGamePage = window.location.pathname.includes('game.html');
-
-    if (isGamePage) {
-        // Nếu là trang Game, hiện tất cả các nước có trong cấu hình
-        extendedNav.classList.remove('hidden');
-        extendedNav.innerHTML = ''; // Xóa trắng để nạp lại
-
-        Object.keys(countryConfig).forEach(code => {
-            if (code !== 'US') { // Không lặp lại cờ Mỹ đã có sẵn
-                extendedNav.innerHTML += `
-                    <button class="w-6 h-6 rounded-full overflow-hidden border border-gray-200" title="${countryConfig[code].name}">
-                        <img src="https://flagcdn.com/${code.toLowerCase()}.svg" alt="${countryConfig[code].name}">
-                    </button>`;
-            }
-        });
-    } else {
-        // Nếu không phải trang Game, chỉ hiện những nước được bật "ON"
-        let hasOnContent = false;
-        extendedNav.innerHTML = '';
-
-        Object.keys(countryConfig).forEach(code => {
-            if (code !== 'US' && countryConfig[code].status === 'ON') {
-                hasOnContent = true;
-                extendedNav.innerHTML += `
-                    <button class="w-6 h-6 rounded-full overflow-hidden border border-gray-200" title="${countryConfig[code].name}">
-                        <img src="https://flagcdn.com/${code.toLowerCase()}.svg" alt="${countryConfig[code].name}">
-                    </button>`;
-            }
-        });
-
-        if (hasOnContent) {
-            extendedNav.classList.remove('hidden');
-        } else {
-            extendedNav.classList.add('hidden');
-        }
+// 1. Hàm đóng/mở menu khi ấn vào lá cờ
+function toggleGlobalLang() {
+    const dropdown = document.getElementById('lang-dropdown-global');
+    if (dropdown) {
+        dropdown.classList.toggle('hidden');
     }
 }
 
-// Chạy hàm ngay khi trang web tải xong
-window.addEventListener('DOMContentLoaded', updateLanguageDisplay);
+// 2. Hàm nạp danh sách cờ tự động dựa trên từng trang
+function loadLangList() {
+    const dropdown = document.getElementById('lang-dropdown-global');
+    if (!dropdown) return;
+
+    const isGamePage = window.location.pathname.includes('game.html');
+    dropdown.innerHTML = ''; 
+
+    Object.keys(countryConfig).forEach(code => {
+        // Trang Game hiện tất cả, trang khác chỉ hiện nước nào status là ON
+        if (isGamePage || countryConfig[code].status === "ON") {
+            dropdown.innerHTML += `
+                <button onclick="selectLang('${code}')" class="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-50 transition-colors">
+                    <img src="https://flagcdn.com/${code.toLowerCase()}.svg" width="20" class="rounded-sm shadow-sm">
+                    <span class="text-sm font-medium text-slate-700">${countryConfig[code].name}</span>
+                </button>`;
+        }
+    });
+}
+
+// 3. Lệnh thực thi khi trang web sẵn sàng
+window.addEventListener('DOMContentLoaded', loadLangList);
+
+// 4. Tự động đóng menu nếu người dùng bấm trượt ra ngoài
+window.addEventListener('click', function(e) {
+    const switcher = document.getElementById('lang-switcher');
+    const dropdown = document.getElementById('lang-dropdown-global');
+    if (switcher && !switcher.contains(e.target)) {
+        dropdown.classList.add('hidden');
+    }
+});
