@@ -33,40 +33,36 @@ function toggleGlobalLang() {
     }
 }
 
-// 2. Hàm nạp danh sách cờ tự động dựa trên từng trang
+// 2. Hàm nạp danh sách cờ tự động
 function loadLangList() {
     const dropdown = document.getElementById('lang-dropdown-global');
     if (!dropdown) return;
 
-    // Kiểm tra trang: Nếu đường dẫn chứa 'game' thì coi như trang game
-    const isGamePage = window.location.href.toLowerCase().indexOf('game') > -1;
+    // Nhận diện trang Game bằng từ khóa đơn giản nhất
+    const isGamePage = window.location.href.toLowerCase().includes('game');
     
     dropdown.innerHTML = ''; 
-    let hasItems = false;
 
     Object.keys(countryConfig).forEach(code => {
-        // Luôn hiện ở trang Game, trang khác chỉ hiện nếu status ON
+        // Nếu là trang Game hiện hết, trang khác chỉ hiện nước nào ON
         if (isGamePage || countryConfig[code].status === "ON") {
-            hasItems = true;
             dropdown.innerHTML += `
-                <button onclick="toggleGlobalLang()" class="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-50">
+                <div class="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-50 cursor-pointer border-b border-slate-50 last:border-none">
                     <img src="https://flagcdn.com/${code.toLowerCase()}.svg" width="20" class="rounded-sm">
                     <span class="text-sm font-medium text-slate-700">${countryConfig[code].name}</span>
-                </button>`;
+                </div>`;
         }
     });
-
-    // Nếu không có gì để hiện thì ẩn luôn cái nút cờ để tránh lỗi giao diện
-    if (!hasItems && !isGamePage) {
-        const switcher = document.getElementById('lang-switcher');
-        if (switcher) switcher.style.display = 'none';
-    }
 }
 
-// 3. Lệnh thực thi khi trang web sẵn sàng
+// 3. Lệnh thực thi và đóng/mở menu
+function toggleGlobalLang() {
+    const dropdown = document.getElementById('lang-dropdown-global');
+    if (dropdown) dropdown.classList.toggle('hidden');
+}
+
 window.addEventListener('DOMContentLoaded', loadLangList);
 
-// 4. Tự động đóng menu nếu người dùng bấm trượt ra ngoài
 window.addEventListener('click', function(e) {
     const switcher = document.getElementById('lang-switcher');
     const dropdown = document.getElementById('lang-dropdown-global');
